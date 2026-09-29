@@ -4,6 +4,9 @@ kind: ScanSetting
 metadata:
   name: homelab-scan-setting
   namespace: openshift-compliance
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   schedule: "0 1 * * *"
   rotation: 3

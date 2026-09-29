@@ -4,6 +4,9 @@ kind: ScanSettingBinding
 metadata:
   name: moderate-compliance
   namespace: openshift-compliance
+  annotations:
+    argocd.argoproj.io/sync-wave: "11"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   settingsRef:
     name: homelab-scan-setting
