@@ -1,0 +1,19 @@
+---
+apiVersion: compliance.openshift.io/v1alpha1
+kind: ScanSetting
+metadata:
+  name: homelab-scan-setting
+  namespace: openshift-compliance
+spec:
+  schedule: "0 1 * * *"
+  rotation: 3
+  rawResultStorage:
+    pvAccessModes:
+      - ReadWriteOnce
+    size: 2Gi
+    rotation: 3
+  autoApplyRemediations: true
+  autoUpdateRemediations: true
+  roles:
+    - master
+    - worker

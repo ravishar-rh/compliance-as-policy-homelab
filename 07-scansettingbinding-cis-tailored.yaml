@@ -1,0 +1,18 @@
+---
+apiVersion: compliance.openshift.io/v1alpha1
+kind: ScanSettingBinding
+metadata:
+  name: cis-compliance-tailored
+  namespace: openshift-compliance
+spec:
+  settingsRef:
+    name: homelab-scan-setting
+    kind: ScanSetting
+    apiGroup: compliance.openshift.io/v1alpha1
+  profiles:
+    - name: ocp4-cis-homelab
+      kind: TailoredProfile
+      apiGroup: compliance.openshift.io/v1alpha1
+    - name: ocp4-cis-node-homelab
+      kind: TailoredProfile
+      apiGroup: compliance.openshift.io/v1alpha1

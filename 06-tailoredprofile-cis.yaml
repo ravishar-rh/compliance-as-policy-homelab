@@ -1,0 +1,35 @@
+---
+apiVersion: compliance.openshift.io/v1alpha1
+kind: TailoredProfile
+metadata:
+  name: ocp4-cis-homelab
+  namespace: openshift-compliance
+  annotations:
+    compliance.openshift.io/product-type: Platform
+spec:
+  title: CIS Benchmark - Homelab Tailored
+  description: >-
+    CIS benchmark tailored for single-node OpenShift homelab.
+    Disables rules that require multi-node or external infrastructure.
+  extends: ocp4-cis
+  disableRules:
+    - name: ocp4-configure-network-policies-namespaces
+      rationale: Single-node homelab does not segment via network policy
+    - name: ocp4-scc-limit-container-allowed-capabilities
+      rationale: Homelab workloads may need extended capabilities for testing
+---
+apiVersion: compliance.openshift.io/v1alpha1
+kind: TailoredProfile
+metadata:
+  name: ocp4-cis-node-homelab
+  namespace: openshift-compliance
+  annotations:
+    compliance.openshift.io/product-type: Node
+spec:
+  title: CIS Node Benchmark - Homelab Tailored
+  description: >-
+    CIS node benchmark tailored for SNO homelab.
+  extends: ocp4-cis-node
+  disableRules:
+    - name: ocp4-kubelet-eviction-thresholds-set-hard-imagefs-available
+      rationale: SNO may have limited disk; custom thresholds managed separately
